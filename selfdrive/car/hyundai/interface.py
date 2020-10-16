@@ -59,6 +59,9 @@ class CarInterface(CarInterfaceBase):
       ret.mass = 2290
       ret.wheelbase = 3.45
     # hyundai
+    elif candidate in [CAR.GRANDEUR_HEV]:
+      ret.mass = 1675 + STD_CARGO_KG
+      ret.wheelbase = 2.885
     elif candidate in [CAR.SANTA_FE]:
       ret.mass = 1694 + STD_CARGO_KG
       ret.wheelbase = 2.766
@@ -144,23 +147,23 @@ class CarInterface(CarInterfaceBase):
     ret.lateralTuning.init('lqr')
 
     ret.lateralTuning.lqr.scale = 1500.0
-    ret.lateralTuning.lqr.ki = 0.01
+    ret.lateralTuning.lqr.ki = 0.02
 
     ret.lateralTuning.lqr.a = [0., 1., -0.22619643, 1.21822268]
     ret.lateralTuning.lqr.b = [-1.92006585e-04, 3.95603032e-05]
     ret.lateralTuning.lqr.c = [1., 0.]
     ret.lateralTuning.lqr.k = [-110., 451.]
-    ret.lateralTuning.lqr.l = [0.33, 0.318]
-    ret.lateralTuning.lqr.dcGain = 0.0028
+    ret.lateralTuning.lqr.l = [0.25, 0.318]
+    ret.lateralTuning.lqr.dcGain = 0.0029
 
-    ret.steerRatio = 13.3
+    ret.steerRatio = 13.5
     ret.steerActuatorDelay = 0.25
-    ret.steerLimitTimer = 2.5
+    ret.steerLimitTimer = 1.5
 
-    ret.steerRateCost = 0.7
+    ret.steerRateCost = 0.5
 
     ret.steerMaxBP = [0.]
-    ret.steerMaxV = [1.5]
+    ret.steerMaxV = [1.0]
 
 
 

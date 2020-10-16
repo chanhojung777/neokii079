@@ -171,7 +171,7 @@ static void update_track_data(UIState *s, bool is_mpc, track_vertices_data *pvd)
   const float *mpc_x_coords = &scene->mpc_x[0];
   const float *mpc_y_coords = &scene->mpc_y[0];
 
-  float off = is_mpc?0.3:0.5;
+  float off = is_mpc?0.3:1.0;
   float lead_d = scene->lead_data[0].getDRel()*2.;
   float path_height = is_mpc?(lead_d>5.)?fmin(lead_d, 25.)-fmin(lead_d*0.35, 10.):20.
                             :(lead_d>0.)?fmin(lead_d, 50.)-fmin(lead_d*0.35, 10.):49.;
@@ -709,7 +709,7 @@ static void bb_ui_draw_L_Extra(UIState *s)
     int x = (s->scene.viz_rect.x + (bdr_s*2)) + 220;
     int y = 100;
     int xo = 180;
-    int height = 70;
+    int height = 50;
 
     nvgTextAlign(s->vg, NVG_ALIGN_CENTER | NVG_ALIGN_BASELINE);
     const int text_x = x + (xo / 2) + (w / 2);
@@ -732,9 +732,9 @@ static void bb_ui_draw_L_Extra(UIState *s)
     snprintf(str, sizeof(str), "O: %.3f, %.0f", lqr.getOutput(), scene->controls_state.getApplySteer());
     ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
 
-    //y += height;
-    //snprintf(str, sizeof(str), "ST: %.3f", scene->car_state.getSteeringTorque());
-    //ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
+    y += height;
+    snprintf(str, sizeof(str), "ST: %.3f", scene->car_state.getSteeringTorque());
+    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
 
     //y += height;
     //snprintf(str, sizeof(str), "CURV: %.3f", scene->pCurvature * 1000.);

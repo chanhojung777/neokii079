@@ -27,8 +27,8 @@ class nTune():
       self.lqr.A = np.array([0., 1., -0.22619643, 1.21822268]).reshape((2, 2))
       self.lqr.B = np.array([-1.92006585e-04, 3.95603032e-05]).reshape((2, 1))
       self.lqr.C = np.array([1., 0.]).reshape((1, 2))
-      self.lqr.K = np.array([-110., 451.]).reshape((1, 2))
-      self.lqr.L = np.array([0.33, 0.318]).reshape((2, 1))
+      self.lqr.K = np.array([-105., 451.]).reshape((1, 2))
+      self.lqr.L = np.array([0.25, 0.318]).reshape((2, 1))
     elif "LatControlINDI" in str(type(controller)):
       self.indi = controller
       self.file = CONF_INDI_FILE
@@ -126,13 +126,13 @@ class nTune():
   def checkValidCommon(self):
     updated = False
 
-    if self.checkValue("steerRatio", 5.0, 25.0, 13.5):
+    if self.checkValue("steerRatio", 12.0, 17.0, 13.5):
       updated = True
 
-    if self.checkValue("steerActuatorDelay", 0.1, 0.8, 0.25):
+    if self.checkValue("steerActuatorDelay", 0.1, 0.3, 0.25):
       updated = True
 
-    if self.checkValue("cameraOffset", -1.0, 1.0, 0.06):
+    if self.checkValue("cameraOffset", -0.05, 0.1, 0.02):
       updated = True
 
     return updated
@@ -140,19 +140,19 @@ class nTune():
   def checkValidLQR(self):
     updated = False
 
-    if self.checkValue("scale", 500.0, 5000.0, 1500.0):
+    if self.checkValue("scale", 1400.0, 2000.0, 1600.0):
       updated = True
 
-    if self.checkValue("ki", 0.0, 0.2, 0.015):
+    if self.checkValue("ki", 0.01, 0.02, 0.015):
       updated = True
 
-    if self.checkValue("dcGain", 0.0020, 0.0040, 0.00250):
+    if self.checkValue("dcGain", 0.0020, 0.0030, 0.0029):
       updated = True
 
-    if self.checkValue("steerLimitTimer", 0.5, 3.0, 2.0):
+    if self.checkValue("steerLimitTimer", 0.5, 3.0, 1.5):
       updated = True
 
-    if self.checkValue("steerMax", 0.5, 3.0, 1.3):
+    if self.checkValue("steerMax", 1.0, 3.0, 1.1):
       updated = True
 
     return updated
